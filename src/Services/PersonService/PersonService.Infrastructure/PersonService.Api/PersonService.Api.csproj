@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.22"/>
+        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.31.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\..\Libraries\ExceptionsLibrary\ExceptionsLibrary.csproj"/>
+        <ProjectReference Include="..\..\PersonService.Application\PersonService.Application.Services\PersonService.Application.Services.csproj" />
+        <ProjectReference Include="..\PersonService.Infrastructure.Repositories\PersonService.Infrastructure.Repositories.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Content Include="..\..\..\..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
+        <Content Include="bin\Debug\net6.0\appsettings.json" />
+        <Content Include="bin\Debug\net6.0\Ardalis.GuardClauses.dll" />
+        <Content Include="bin\Debug\net6.0\AutoMapper.dll" />
+        <Content Include="bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll" />
+        <Content Include="bin\Debug\net6.0\ExceptionsLibrary.dll" />
+        <Content Include="bin\Debug\net6.0\ExceptionsLibrary.pdb" />
+        <Content Include="bin\Debug\net6.0\FluentValidation.AspNetCore.dll" />
+        <Content Include="bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll" />
+        <Content Include="bin\Debug\net6.0\FluentValidation.dll" />
+        <Content Include="bin\Debug\net6.0\GuardExtensions.dll" />
+        <Content Include="bin\Debug\net6.0\GuardExtensions.pdb" />
+        <Content Include="bin\Debug\net6.0\Humanizer.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.Extensions.Http.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.Extensions.Logging.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.Extensions.Options.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll" />
+        <Content Include="bin\Debug\net6.0\Microsoft.OpenApi.dll" />
+        <Content Include="bin\Debug\net6.0\Npgsql.dll" />
+        <Content Include="bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll" />
+        <Content Include="bin\Debug\net6.0\PersonService.Api.deps.json" />
+        <Content Include="bin\Debug\net6.0\PersonService.Api.dll" />
+        <Content Include="bin\Debug\net6.0\PersonService.Api.exe" />
+        <Content Include="bin\Debug\net6.0\PersonService.Api.pdb" />
+        <Content Include="bin\Debug\net6.0\PersonService.Api.runtimeconfig.json" />
+        <Content Include="bin\Debug\net6.0\PersonService.Application.Services.dll" />
+        <Content Include="bin\Debug\net6.0\PersonService.Application.Services.pdb" />
+        <Content Include="bin\Debug\net6.0\PersonService.Domain.dll" />
+        <Content Include="bin\Debug\net6.0\PersonService.Domain.pdb" />
+        <Content Include="bin\Debug\net6.0\PersonService.Infrastructure.Data.dll" />
+        <Content Include="bin\Debug\net6.0\PersonService.Infrastructure.Data.pdb" />
+        <Content Include="bin\Debug\net6.0\PersonService.Infrastructure.Repositories.dll" />
+        <Content Include="bin\Debug\net6.0\PersonService.Infrastructure.Repositories.pdb" />
+        <Content Include="bin\Debug\net6.0\Refit.dll" />
+        <Content Include="bin\Debug\net6.0\Refit.HttpClientFactory.dll" />
+        <Content Include="bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll" />
+        <Content Include="bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll" />
+        <Content Include="bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll" />
+        <Content Include="bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll" />
+        <Content Include="bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll" />
+        <Content Include="bin\Debug\net6.0\System.Net.Http.Json.dll" />
+        <Content Include="bin\Debug\net6.0\System.Text.Encodings.Web.dll" />
+        <Content Include="bin\Debug\net6.0\System.Text.Json.dll" />
+    </ItemGroup>
+
+</Project>
