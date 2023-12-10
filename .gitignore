@@ -265,3 +265,4 @@ FakesAssemblies/
 appsettings.*.json
 
 *.sqlite
+/src/Services/PersonService/PersonService.Application/PersonService.Application.Services/bin/

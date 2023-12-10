@@ -41,7 +41,18 @@ namespace Domain.Entities
 
         private Guid _referalId;
 
-        public decimal Income { get; private set; }
+
+        public decimal? Income
+        {
+            get => _income;
+            private set
+            {
+                Guard.Against.Null(value, nameof(value));
+                _income = value;
+            }
+        }
+
+        private decimal? _income;
 
         public Referal(Guid id, Guid referalId, string referalName, string personName) : base(id)
         {

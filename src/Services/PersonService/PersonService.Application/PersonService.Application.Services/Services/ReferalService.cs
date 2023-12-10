@@ -27,16 +27,7 @@ namespace PersonService.Application.Services.Services
 
             return _mapper.Map<ReferalResponse>(referal);
         }
-
-
-        /*public async Task<Guid> ReplenishIncome(Referal referal, decimal income)
-        {
-            referal.income += income;
-            _unitOfWork.repository.Update(referal);
-            await _unitOfWork.Save();
-            return referal.PersonId;
-        }*/
-
+        
         public async Task CreateReferal(CreateReferalRequest request)
         {
             var referal = new Referal(Guid.NewGuid(), request.ReferalId, request.ReferalName, request.PersonName);
@@ -44,18 +35,5 @@ namespace PersonService.Application.Services.Services
             _referalRepository.Add(referal);
             await _unitOfWork.SaveChangesAsync();
         }
-        // todo: Дополнить метод
-        /*public async Task ReplenishPersonBalanceByReferalId(ReplenishPersonBalanceRequest request)
-        {
-            var referal = await _referalRepository.GetAsync(c => c.Id == request.id);
-            if (referal == null)
-            {
-                return;
-            }
-            //await _PersonService.ReplenishBalance(replenishPersonBalanceDTO);
-
-            _unitOfWork.repository.Update(referal);
-            await _unitOfWork.Save();
-        }*/
     }
 }

@@ -30,10 +30,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GuardExtensions", "GuardExt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuardExtensions", "GuardExtensions\GuardExtensions.csproj", "{D284E8FB-8922-4BE4-BA55-B2F685CF3E65}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solition Items", "Solition Items", "{BE966EFA-B322-4F7B-97C6-556DC9EFEF4B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BE966EFA-B322-4F7B-97C6-556DC9EFEF4B}"
 	ProjectSection(SolutionItems) = preProject
-		..\Solition Items\.env = ..\Solition Items\.env
-		..\Solition Items\docker-compose.yml = ..\Solition Items\docker-compose.yml
+		..\Solution Items\.env = ..\Solution Items\.env
+		..\Solution Items\docker-compose.yml = ..\Solution Items\docker-compose.yml
 	EndProjectSection
 EndProject
 Global
