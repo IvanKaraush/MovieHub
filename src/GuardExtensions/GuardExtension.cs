@@ -6,13 +6,15 @@ namespace GuardExtensions;
 
 public static class GuardExtension
 {
-    public static void SpecialCharacters(this IGuardClause guardClause, string input)
+    private const int Minlength = 8;
+
+    public static void SpecialCharacters(this IGuardClause guardClause, string input, string parameterName)
     {
         guardClause.NullOrEmpty(input, nameof(input));
 
         if (Regex.IsMatch(input, RegexPatterns.SpecialCharactersPattern))
         {
-            throw new ArgumentException("Invalid parameter");
+            throw new ArgumentException(GuardExtensionMessages.SpecialCharactersException, parameterName);
         }
     }
 }

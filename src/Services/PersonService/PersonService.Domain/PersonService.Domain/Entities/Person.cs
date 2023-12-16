@@ -14,7 +14,7 @@ namespace Domain.Entities
             get => _name;
             private set
             {
-                Guard.Against.SpecialCharacters(value);
+                Guard.Against.SpecialCharacters(value, nameof(value));
                 _name = value;
             }
         }
@@ -33,17 +33,7 @@ namespace Domain.Entities
 
         private string _email = null!;
 
-        public string Password
-        {
-            get => _password;
-            private set
-            {
-                Guard.Against.SpecialCharacters(value);
-                _password = value;
-            }
-        }
-
-        private string _password = null!;
+        public string Password { get; private set; } = null!;
 
         public decimal Balance { get; private set; }
 

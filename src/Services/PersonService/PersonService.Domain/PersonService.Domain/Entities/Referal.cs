@@ -10,7 +10,7 @@ namespace Domain.Entities
             get => _personName;
             private set
             {
-                Guard.Against.SpecialCharacters(value);
+                Guard.Against.SpecialCharacters(value, nameof(value));
                 _personName = value;
             }
         }
@@ -22,7 +22,7 @@ namespace Domain.Entities
             get => _referalName;
             private set
             {
-                Guard.Against.SpecialCharacters(value);
+                Guard.Against.SpecialCharacters(value, nameof(value));
                 _referalName = value;
             }
         }

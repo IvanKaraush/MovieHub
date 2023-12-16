@@ -39,7 +39,8 @@ public class PersonService : IPersonService
             throw new PersonAlreadyExistException(ApplicationExceptionMessages.PersonAlreadyExistException);
         }
 
-        var newPerson = new Person(Guid.NewGuid(), request.Name, request.Email, request.Password, request.ProfileCreatedDate);
+        var newPerson = new Person(Guid.NewGuid(), request.Name, request.Email, BCrypt.Net.BCrypt.HashPassword(request.Password),
+            request.ProfileCreatedDate);
         _personRepository.Add(newPerson);
 
         await _personRepository.SaveChangesAsync();
@@ -59,14 +60,15 @@ public class PersonService : IPersonService
         var person = await _personRepository.GetByIdAsync(request.Id) ??
                      throw new PersonNotFoundException(ApplicationExceptionMessages.PersonNotFoundException);
 
-        person.UpdatePerson(request.Name, request.Email, request.Password, request.WalletName);
+        person.UpdatePerson(request.Name, request.Email, BCrypt.Net.BCrypt.HashPassword(request.Password), request.WalletName);
 
         await _personRepository.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Guid personId)
     {
-        var person = await _personRepository.GetByIdAsync(personId) ?? throw new PersonNotFoundException(ApplicationExceptionMessages.PersonNotFoundException);
+        var person = await _personRepository.GetByIdAsync(personId) ??
+                     throw new PersonNotFoundException(ApplicationExceptionMessages.PersonNotFoundException);
 
         _personRepository.Delete(person);
         await _personRepository.SaveChangesAsync();
