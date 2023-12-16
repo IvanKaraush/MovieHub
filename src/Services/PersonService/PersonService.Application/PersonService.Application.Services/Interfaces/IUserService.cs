@@ -9,6 +9,6 @@ namespace PersonService.Application.Services.Interfaces
         Task<Guid> RegistrationAsync(PersonRegisterRequest request);
         Task<Guid> AuthorizationAsync(PersonAuthorizationRequest request);
         Task UpdateAsync(UpdatePersonRequest request);
-        Task DeleteAsync(Guid id);
+        Task DeleteAsync(Guid personId);
     }
 }

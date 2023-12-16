@@ -76,11 +76,6 @@ namespace Domain.Entities
         {
         }
 
-        public void SetWalletName(string walletName)
-        {
-            WalletName = walletName;
-        }
-
         public void UpdatePerson(string name, string email, string password, string walletName)
         {
             Name = name;

@@ -10,6 +10,5 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IPersonRepository, PersonRepository>();
         services.AddScoped<IReferalRepository, ReferalRepository>();
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 }
