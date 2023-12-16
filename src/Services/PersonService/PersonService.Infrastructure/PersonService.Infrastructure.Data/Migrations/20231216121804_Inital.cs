@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PersonService.Infrastructure.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Inital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Persons",
+                name: "persons",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -23,7 +23,7 @@ namespace PersonService.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Persons", x => x.id);
+                    table.PrimaryKey("PK_persons", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -31,18 +31,18 @@ namespace PersonService.Infrastructure.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Person_name = table.Column<string>(type: "text", nullable: false),
+                    person_name = table.Column<string>(type: "text", nullable: false),
                     referal_name = table.Column<string>(type: "text", nullable: false),
                     referal_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    income = table.Column<decimal>(type: "numeric", nullable: false)
+                    income = table.Column<decimal>(type: "numeric", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_referals", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_referals_Persons_referal_id",
+                        name: "FK_referals_persons_referal_id",
                         column: x => x.referal_id,
-                        principalTable: "Persons",
+                        principalTable: "persons",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -59,7 +59,7 @@ namespace PersonService.Infrastructure.Data.Migrations
                 name: "referals");
 
             migrationBuilder.DropTable(
-                name: "Persons");
+                name: "persons");
         }
     }
 }

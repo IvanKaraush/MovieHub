@@ -11,4 +11,10 @@ public class PersonRegisterRequest : BasePerson
     /// Дата создания профиля
     /// </summary>
     public DateOnly ProfileCreatedDate { get; init; }
+
+    /// <summary>
+    /// Идентификатор приглашающего пользователя (если таковой существует)
+    /// </summary>
+    public Guid? PersonId { get; init; }
+
 }

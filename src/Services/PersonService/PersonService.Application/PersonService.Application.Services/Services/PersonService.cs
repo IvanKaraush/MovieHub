@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Ardalis.GuardClauses;
+using AutoMapper;
 using Domain.Entities;
 using PersonService.Application.Services.Dto.PersonDto;
 using PersonService.Application.Services.Exceptions;
@@ -20,12 +21,16 @@ public class PersonService : IPersonService
 
     public async Task<PersonResponse> GetFullPersonByIdAsync(Guid personId)
     {
+        Guard.Against.Default(personId, nameof(personId));
+
         var person = await _personRepository.GetWithInclude(c => c.Id == personId, c => c.Referals);
         return _mapper.Map<PersonResponse>(person);
     }
 
     public async Task<PersonResponse> GetPersonByIdAsync(Guid personId)
     {
+        Guard.Against.Default(personId, nameof(personId));
+
         var person = await _personRepository.GetByIdAsync(personId) ??
                      throw new PersonNotFoundException(ApplicationExceptionMessages.PersonNotFoundException);
         return _mapper.Map<PersonResponse>(person);
@@ -33,22 +38,34 @@ public class PersonService : IPersonService
 
     public async Task<Guid> RegistrationAsync(PersonRegisterRequest request)
     {
+        Guard.Against.Null(request, nameof(request));
+
         var person = await _personRepository.GetAsync(c => c.Name == request.Name);
-        if (person is not null)
+        if (person != null)
         {
             throw new PersonAlreadyExistException(ApplicationExceptionMessages.PersonAlreadyExistException);
         }
-
+        
         var newPerson = new Person(Guid.NewGuid(), request.Name, request.Email, BCrypt.Net.BCrypt.HashPassword(request.Password),
             request.ProfileCreatedDate);
-        _personRepository.Add(newPerson);
 
+        if (request.PersonId != null)
+        {
+            var invitingPerson = await _personRepository.GetWithInclude(c => c.Id == request.PersonId, n => n.Referals) ??
+                                 throw new PersonAlreadyExistException(ApplicationExceptionMessages.PersonAlreadyExistException);
+
+            invitingPerson.AddReferal(newPerson.Name, newPerson.Id);
+        }
+
+        _personRepository.Add(newPerson);
         await _personRepository.SaveChangesAsync();
         return newPerson.Id;
     }
 
     public async Task<Guid> AuthorizationAsync(PersonAuthorizationRequest request)
     {
+        Guard.Against.Null(request, nameof(request));
+
         var person = await _personRepository.GetAsync(c => c.Name == request.Name) ??
                      throw new PersonNotFoundException(ApplicationExceptionMessages.PersonNotFoundException);
 
@@ -57,6 +74,8 @@ public class PersonService : IPersonService
 
     public async Task UpdateAsync(UpdatePersonRequest request)
     {
+        Guard.Against.Null(request, nameof(request));
+
         var person = await _personRepository.GetByIdAsync(request.Id) ??
                      throw new PersonNotFoundException(ApplicationExceptionMessages.PersonNotFoundException);
 
@@ -67,6 +86,8 @@ public class PersonService : IPersonService
 
     public async Task DeleteAsync(Guid personId)
     {
+        Guard.Against.Default(personId, nameof(personId));
+
         var person = await _personRepository.GetByIdAsync(personId) ??
                      throw new PersonNotFoundException(ApplicationExceptionMessages.PersonNotFoundException);
 

@@ -8,7 +8,7 @@ public class ReferalConfiguration : IEntityTypeConfiguration<Referal>
 {
     public void Configure(EntityTypeBuilder<Referal> builder)
     {
-        builder.ToTable("Referals")
+        builder.ToTable("referals")
             .HasKey(c => c.Id);
 
         builder.Property(c => c.ReferalId)

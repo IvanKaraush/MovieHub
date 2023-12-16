@@ -74,12 +74,12 @@ namespace Domain.Entities
             WalletName = walletName;
         }
 
-        public void AddReferal(string personName, string referalName, Guid referalId)
+        public void AddReferal(string referalName, Guid referalId)
         {
             var referal = _referals.FirstOrDefault(r => r.ReferalId == referalId);
             if (referal == null)
             {
-                _referals.Add(new Referal(Guid.NewGuid(), referalId, referalName, personName));
+                _referals.Add(new Referal(Guid.NewGuid(), referalId, referalName, Name));
             }
             else
             {

@@ -17,4 +17,9 @@
       <ProjectReference Include="..\..\PersonService.Domain\PersonService.Domain\PersonService.Domain.csproj" />
     </ItemGroup>
 
+
+    <ItemGroup>
+      <Folder Include="Migrations\" />
+    </ItemGroup>
+
 </Project>

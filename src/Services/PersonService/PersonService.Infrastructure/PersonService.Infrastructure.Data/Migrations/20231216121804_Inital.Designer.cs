@@ -5,14 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using PersonService.Infrastructure.Data;
 
 #nullable disable
 
 namespace PersonService.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20231106180818_Initial")]
-    partial class Initial
+    [Migration("20231216121804_Inital")]
+    partial class Inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,7 +56,7 @@ namespace PersonService.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Persons", (string)null);
+                    b.ToTable("persons", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Referal", b =>
@@ -64,14 +65,14 @@ namespace PersonService.Infrastructure.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<decimal>("Income")
+                    b.Property<decimal?>("Income")
                         .HasColumnType("numeric")
                         .HasColumnName("income");
 
                     b.Property<string>("PersonName")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("Person_name");
+                        .HasColumnName("person_name");
 
                     b.Property<Guid>("ReferalId")
                         .HasColumnType("uuid")
@@ -91,7 +92,7 @@ namespace PersonService.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Domain.Entities.Person", b =>
                 {
-                    b.OwnsOne("Domain.Value_Objects.ProfileCreationDate", "ProfileCreationDate", b1 =>
+                    b.OwnsOne("Domain.ValueObjects.ProfileCreationDate", "ProfileCreationDate", b1 =>
                         {
                             b1.Property<Guid>("PersonId")
                                 .HasColumnType("uuid");
@@ -102,7 +103,7 @@ namespace PersonService.Infrastructure.Data.Migrations
 
                             b1.HasKey("PersonId");
 
-                            b1.ToTable("Persons");
+                            b1.ToTable("persons");
 
                             b1.WithOwner()
                                 .HasForeignKey("PersonId");
