@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Entities;
+using IdentityModel.Client;
 using PersonService.Application.Services.Dto.PersonDto;
 using PersonService.Application.Services.Exceptions;
 using PersonService.Application.Services.Interfaces;

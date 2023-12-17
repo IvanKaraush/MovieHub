@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
+using IdentityModel.Client;
+using Microsoft.AspNetCore.Authorization;
 using PersonService.Application.Services.Dto.PersonDto;
 using PersonService.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +20,26 @@ namespace PersonService.Api.Controllers
         {
             _personService = personService;
         }
+
+        [HttpGet("get/token")]
+        public async Task<ActionResult> GetToken()
+        {
+            var client = new HttpClient();
+            var disco = await client.GetDiscoveryDocumentAsync("https://localhost:7008");
+            var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+            {
+                Address = disco.TokenEndpoint,
+            
+                ClientId = "Client",
+                ClientSecret = "secret",
+                Scope = "TestApi"
+            });
+            client.SetBearerToken(tokenResponse.AccessToken);
+            var result = await client.GetAsync("http://localhost:5287/api/person/full/2344FFF1-6907-44A0-B158-FDDCFE835555");
+            return Ok(result.StatusCode);
+        }
         
+        [Authorize("TestApi")]
         [HttpGet("full/{personId:guid}")]
         public async Task<ActionResult> GetFull([FromRoute] Guid personId)
         {
