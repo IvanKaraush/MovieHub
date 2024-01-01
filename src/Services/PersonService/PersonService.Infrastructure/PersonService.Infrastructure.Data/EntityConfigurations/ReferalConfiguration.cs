@@ -11,6 +11,10 @@ public class ReferalConfiguration : IEntityTypeConfiguration<Referal>
         builder.ToTable("referals")
             .HasKey(c => c.Id);
 
+        builder.Property(c => c.Id)
+            .HasColumnName("id")
+            .ValueGeneratedNever();
+
         builder.Property(c => c.ReferalId)
             .HasColumnName("referal_id")
             .IsRequired();

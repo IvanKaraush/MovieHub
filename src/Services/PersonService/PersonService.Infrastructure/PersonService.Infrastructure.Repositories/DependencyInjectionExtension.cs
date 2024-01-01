@@ -9,5 +9,6 @@ public static class DependencyInjectionExtension
     public static void ConfigureRepositories(this IServiceCollection services)
     {
         services.AddScoped<IPersonRepository, PersonRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 }

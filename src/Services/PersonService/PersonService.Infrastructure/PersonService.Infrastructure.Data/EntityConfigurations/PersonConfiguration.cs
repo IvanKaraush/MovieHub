@@ -12,11 +12,12 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
             .HasKey(c => c.Id);
 
         builder.Property(c => c.Id)
-            .HasColumnName("id");
+            .HasColumnName("id")
+            .ValueGeneratedNever();
 
         builder.Property(c => c.Balance)
             .HasColumnName("balance");
-        
+
         builder.OwnsOne(c => c.ProfileCreationDate, created =>
         {
             created.Property(c => c.CreationDate)

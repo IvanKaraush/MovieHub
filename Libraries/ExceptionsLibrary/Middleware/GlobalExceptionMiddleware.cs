@@ -1,4 +1,6 @@
 ﻿using System.Net;
+using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using ExceptionsLibrary.Dto;
 using ExceptionsLibrary.Exceptions;
@@ -54,7 +56,8 @@ public class GlobalExceptionMiddleware
                 StackTrace = mapException.StackTrace ?? mapException.InnerException?.StackTrace
             };
 
-            var errorResponseJson = JsonSerializer.Serialize(errorResponse);
+            var errorResponseJson = JsonSerializer.Serialize(errorResponse,
+                new JsonSerializerOptions { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
 
             context.Response.StatusCode = (int)MapStatusCode(mapException);
             await SendMessageAsync(errorResponseJson, context);

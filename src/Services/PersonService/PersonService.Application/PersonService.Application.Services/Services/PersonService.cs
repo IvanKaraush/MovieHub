@@ -12,11 +12,13 @@ public class PersonService : IPersonService
 {
     private readonly IPersonRepository _personRepository;
     private readonly IMapper _mapper;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public PersonService(IPersonRepository personRepository, IMapper mapper)
+    public PersonService(IPersonRepository personRepository, IMapper mapper, IUnitOfWork unitOfWork)
     {
         _personRepository = personRepository;
         _mapper = mapper;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<PersonResponse> GetFullPersonByIdAsync(Guid personId)
@@ -40,26 +42,28 @@ public class PersonService : IPersonService
     {
         Guard.Against.Null(request, nameof(request));
 
-        var person = await _personRepository.GetAsync(c => c.Name == request.Name);
-        if (person != null)
+        return await _unitOfWork.ExecuteInTransactionAsync(async () =>
         {
-            throw new PersonAlreadyExistException(ApplicationExceptionMessages.PersonAlreadyExistException);
-        }
-        
-        var newPerson = new Person(Guid.NewGuid(), request.Name, request.Email, BCrypt.Net.BCrypt.HashPassword(request.Password),
-            request.ProfileCreatedDate);
+            var person = await _personRepository.GetAsync(c => c.Name == request.Name);
+            if (person != null)
+            {
+                throw new PersonAlreadyExistException(ApplicationExceptionMessages.PersonAlreadyExistException);
+            }
 
-        if (request.PersonId != null)
-        {
-            var invitingPerson = await _personRepository.GetWithInclude(c => c.Id == request.PersonId, n => n.Referals) ??
-                                 throw new PersonAlreadyExistException(ApplicationExceptionMessages.PersonAlreadyExistException);
+            var newPerson = new Person(Guid.NewGuid(), request.Name, request.Email, BCrypt.Net.BCrypt.HashPassword(request.Password),
+                request.ProfileCreatedDate);
 
-            invitingPerson.AddReferal(newPerson.Name, newPerson.Id);
-        }
+            if (request.PersonId != null)
+            {
+                var invitingPerson = await _personRepository.GetWithInclude(c => c.Id == request.PersonId, n => n.Referals) ??
+                                     throw new PersonAlreadyExistException(ApplicationExceptionMessages.PersonAlreadyExistException);
 
-        _personRepository.Add(newPerson);
-        await _personRepository.SaveChangesAsync();
-        return newPerson.Id;
+                invitingPerson.AddReferal(newPerson.Name, newPerson.Id);
+            }
+
+            _personRepository.Add(newPerson);
+            return newPerson.Id;
+        });
     }
 
     public async Task<Guid> AuthorizationAsync(PersonAuthorizationRequest request)

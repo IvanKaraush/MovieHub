@@ -25,7 +25,6 @@ namespace PersonService.Infrastructure.Data.Migrations
             modelBuilder.Entity("Domain.Entities.Person", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
@@ -60,8 +59,8 @@ namespace PersonService.Infrastructure.Data.Migrations
             modelBuilder.Entity("Domain.Entities.Referal", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<decimal?>("Income")
                         .HasColumnType("numeric")
