@@ -3,7 +3,7 @@ using GuardExtensions;
 
 namespace Domain.Entities
 {
-    public class Referal : BaseEntity
+    public class Referral : BaseEntity
     {
         public string PersonName
         {
@@ -17,29 +17,29 @@ namespace Domain.Entities
 
         private string _personName = null!;
 
-        public string ReferalName
+        public string ReferralName
         {
-            get => _referalName;
+            get => _referralName;
             private set
             {
                 Guard.Against.SpecialCharacters(value, nameof(value));
-                _referalName = value;
+                _referralName = value;
             }
         }
 
-        private string _referalName = null!;
+        private string _referralName = null!;
 
-        public Guid ReferalId
+        public Guid ReferralId
         {
-            get => _referalId;
+            get => _referralId;
             private set
             {
                 Guard.Against.Default(value, nameof(value));
-                _referalId = value;
+                _referralId = value;
             }
         }
 
-        private Guid _referalId;
+        private Guid _referralId;
 
 
         public decimal? Income
@@ -54,10 +54,10 @@ namespace Domain.Entities
 
         private decimal? _income;
 
-        public Referal(Guid id, Guid referalId, string referalName, string personName) : base(id)
+        public Referral(Guid id, Guid referralId, string referralName, string personName) : base(id)
         {
-            ReferalId = referalId;
-            ReferalName = referalName;
+            ReferralId = referralId;
+            ReferralName = referralName;
             PersonName = personName;
         }
     }

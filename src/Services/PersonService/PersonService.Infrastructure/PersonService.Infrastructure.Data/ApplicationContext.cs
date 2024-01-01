@@ -18,7 +18,7 @@ namespace PersonService.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new PersonConfiguration());
-            modelBuilder.ApplyConfiguration(new ReferalConfiguration());
+            modelBuilder.ApplyConfiguration(new ReferralConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

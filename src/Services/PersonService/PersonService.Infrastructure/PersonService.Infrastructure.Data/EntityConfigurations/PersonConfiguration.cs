@@ -42,9 +42,9 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
             .HasColumnName("wallet_name")
             .IsRequired(false);
 
-        builder.HasMany(c => c.Referals)
+        builder.HasMany(c => c.Referrals)
             .WithOne()
-            .HasForeignKey(c => c.ReferalId)
+            .HasForeignKey(c => c.ReferralId)
             .IsRequired();
     }
 }

@@ -2,17 +2,17 @@ using ExceptionsLibrary.Exceptions;
 
 namespace Domain.Exceptions;
 
-public class ReferalAlreadyExistException : AlreadyExistException
+public class ReferralAlreadyExistException : AlreadyExistException
 {
-    public ReferalAlreadyExistException()
+    public ReferralAlreadyExistException()
     {
     }
 
-    public ReferalAlreadyExistException(string message) : base(message)
+    public ReferralAlreadyExistException(string message) : base(message)
     {
     }
 
-    public ReferalAlreadyExistException(string message, Exception ex) : base(message, ex)
+    public ReferralAlreadyExistException(string message, Exception ex) : base(message, ex)
     {
     }
 }

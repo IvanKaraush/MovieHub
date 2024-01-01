@@ -27,36 +27,36 @@ namespace PersonService.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "referals",
+                name: "referrals",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     person_name = table.Column<string>(type: "text", nullable: false),
-                    referal_name = table.Column<string>(type: "text", nullable: false),
-                    referal_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    referral_name = table.Column<string>(type: "text", nullable: false),
+                    referral_id = table.Column<Guid>(type: "uuid", nullable: false),
                     income = table.Column<decimal>(type: "numeric", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_referals", x => x.Id);
+                    table.PrimaryKey("PK_referrals", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_referals_persons_referal_id",
-                        column: x => x.referal_id,
+                        name: "FK_referrals_persons_referral_id",
+                        column: x => x.referral_id,
                         principalTable: "persons",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_referals_referal_id",
-                table: "referals",
-                column: "referal_id");
+                name: "IX_referrals_referral_id",
+                table: "referrals",
+                column: "referral_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "referals");
+                name: "referrals");
 
             migrationBuilder.DropTable(
                 name: "persons");

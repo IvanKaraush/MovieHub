@@ -51,8 +51,8 @@ namespace Domain.Entities
 
         public ProfileCreationDate ProfileCreationDate { get; private set; } = null!;
 
-        public IReadOnlyCollection<Referal> Referals => _referals.AsReadOnly();
-        private readonly List<Referal> _referals = new();
+        public IReadOnlyCollection<Referral> Referrals => _referrals.AsReadOnly();
+        private readonly List<Referral> _referrals = new();
 
         public Person(Guid id, string name, string email, string password, DateOnly profileCreationDate) : base(id)
         {
@@ -74,29 +74,29 @@ namespace Domain.Entities
             WalletName = walletName;
         }
 
-        public void AddReferal(string referalName, Guid referalId)
+        public void AddReferral(string referralName, Guid referralId)
         {
-            var referal = _referals.FirstOrDefault(r => r.ReferalId == referalId);
-            if (referal == null)
+            var referral = _referrals.FirstOrDefault(r => r.ReferralId == referralId);
+            if (referral == null)
             {
-                _referals.Add(new Referal(Guid.NewGuid(), referalId, referalName, Name));
+                _referrals.Add(new Referral(Guid.NewGuid(), referralId, referralName, Name));
             }
             else
             {
-                throw new ReferalAlreadyExistException(DomainExceptionMessages.ReferalAlreadyExistFoundException);
+                throw new ReferralAlreadyExistException(DomainExceptionMessages.ReferralAlreadyExistFoundException);
             }
         }
 
-        public void RemoveReferal(Guid referalId)
+        public void RemoveReferral(Guid referralId)
         {
-            var referal = _referals.FirstOrDefault(c => c.ReferalId == referalId);
-            if (referal is not null)
+            var referral = _referrals.FirstOrDefault(c => c.ReferralId == referralId);
+            if (referral is not null)
             {
-                _referals.Remove(referal);
+                _referrals.Remove(referral);
             }
             else
             {
-                throw new ReferalNotFoundException(DomainExceptionMessages.ReferalNotFoundException);
+                throw new ReferralNotFoundException(DomainExceptionMessages.ReferralNotFoundException);
             }
         }
     }

@@ -56,7 +56,7 @@ namespace PersonService.Infrastructure.Data.Migrations
                     b.ToTable("persons", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.Referal", b =>
+            modelBuilder.Entity("Domain.Entities.Referral", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid")
@@ -71,20 +71,20 @@ namespace PersonService.Infrastructure.Data.Migrations
                         .HasColumnType("text")
                         .HasColumnName("person_name");
 
-                    b.Property<Guid>("ReferalId")
+                    b.Property<Guid>("ReferralId")
                         .HasColumnType("uuid")
-                        .HasColumnName("referal_id");
+                        .HasColumnName("referral_id");
 
-                    b.Property<string>("ReferalName")
+                    b.Property<string>("ReferralName")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("referal_name");
+                        .HasColumnName("referral_name");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ReferalId");
+                    b.HasIndex("ReferralId");
 
-                    b.ToTable("referals", (string)null);
+                    b.ToTable("referrals", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Person", b =>
@@ -110,18 +110,18 @@ namespace PersonService.Infrastructure.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.Entities.Referal", b =>
+            modelBuilder.Entity("Domain.Entities.Referral", b =>
                 {
                     b.HasOne("Domain.Entities.Person", null)
-                        .WithMany("Referals")
-                        .HasForeignKey("ReferalId")
+                        .WithMany("Referrals")
+                        .HasForeignKey("ReferralId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Person", b =>
                 {
-                    b.Navigation("Referals");
+                    b.Navigation("Referrals");
                 });
 #pragma warning restore 612, 618
         }

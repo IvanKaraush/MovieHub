@@ -25,7 +25,7 @@ public class PersonService : IPersonService
     {
         Guard.Against.Default(personId, nameof(personId));
 
-        var person = await _personRepository.GetWithInclude(c => c.Id == personId, c => c.Referals);
+        var person = await _personRepository.GetWithInclude(c => c.Id == personId, c => c.Referrals);
         return _mapper.Map<PersonResponse>(person);
     }
 
@@ -55,10 +55,10 @@ public class PersonService : IPersonService
 
             if (request.PersonId != null)
             {
-                var invitingPerson = await _personRepository.GetWithInclude(c => c.Id == request.PersonId, n => n.Referals) ??
+                var invitingPerson = await _personRepository.GetWithInclude(c => c.Id == request.PersonId, n => n.Referrals) ??
                                      throw new PersonAlreadyExistException(ApplicationExceptionMessages.PersonAlreadyExistException);
 
-                invitingPerson.AddReferal(newPerson.Name, newPerson.Id);
+                invitingPerson.AddReferral(newPerson.Name, newPerson.Id);
             }
 
             _personRepository.Add(newPerson);

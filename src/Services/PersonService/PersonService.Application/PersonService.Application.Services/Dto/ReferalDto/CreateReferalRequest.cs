@@ -1,9 +1,9 @@
-﻿namespace PersonService.Application.Services.Dto.ReferalDto
+﻿namespace PersonService.Application.Services.Dto.ReferralDto
 {
-    public class CreateReferalRequest
+    public class CreateReferralRequest
     {
         public string PersonName { get; init; } = string.Empty;
-        public string ReferalName { get; init; } = string.Empty;
-        public Guid ReferalId { get; init; }
+        public string ReferralName { get; init; } = string.Empty;
+        public Guid ReferralId { get; init; }
     }
 }

@@ -4,23 +4,23 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace PersonService.Infrastructure.Data.EntityConfigurations;
 
-public class ReferalConfiguration : IEntityTypeConfiguration<Referal>
+public class ReferralConfiguration : IEntityTypeConfiguration<Referral>
 {
-    public void Configure(EntityTypeBuilder<Referal> builder)
+    public void Configure(EntityTypeBuilder<Referral> builder)
     {
-        builder.ToTable("referals")
+        builder.ToTable("referrals")
             .HasKey(c => c.Id);
 
         builder.Property(c => c.Id)
             .HasColumnName("id")
             .ValueGeneratedNever();
 
-        builder.Property(c => c.ReferalId)
-            .HasColumnName("referal_id")
+        builder.Property(c => c.ReferralId)
+            .HasColumnName("referral_id")
             .IsRequired();
 
-        builder.Property(c => c.ReferalName)
-            .HasColumnName("referal_name")
+        builder.Property(c => c.ReferralName)
+            .HasColumnName("referral_name")
             .IsRequired();
 
         builder.Property(c => c.Income)
@@ -30,8 +30,8 @@ public class ReferalConfiguration : IEntityTypeConfiguration<Referal>
             .HasColumnName("person_name")
             .IsRequired();
 
-        builder.Property(c => c.ReferalName)
-            .HasColumnName("referal_name")
+        builder.Property(c => c.ReferralName)
+            .HasColumnName("referral_name")
             .IsRequired();
     }
 }

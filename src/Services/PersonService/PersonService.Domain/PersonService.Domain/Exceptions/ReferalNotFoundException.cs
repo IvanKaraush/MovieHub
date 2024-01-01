@@ -2,17 +2,17 @@ using ExceptionsLibrary.Exceptions;
 
 namespace Domain.Exceptions;
 
-public class ReferalNotFoundException : NotFoundException
+public class ReferralNotFoundException : NotFoundException
 {
-    public ReferalNotFoundException()
+    public ReferralNotFoundException()
     {
     }
 
-    public ReferalNotFoundException(string message) : base(message)
+    public ReferralNotFoundException(string message) : base(message)
     {
     }
 
-    public ReferalNotFoundException(string message, Exception ex) : base(message, ex)
+    public ReferralNotFoundException(string message, Exception ex) : base(message, ex)
     {
     }
 }
