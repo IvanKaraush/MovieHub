@@ -1,11 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FilmService.Infrastructure.Data;
 
 public static class DependencyInjectionExtension
 {
-    public static void ConfigureContext(this IServiceCollection services)
+    public static void ConfigureContext(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddNpgsql<ApplicationContext>("Server=localhost;Port=5433;DataBase=Persons;User Id=postgres;Password=134204");
+        services.AddNpgsql<ApplicationContext>(configuration.GetConnectionString("DefaultConnection"));
     }
 }

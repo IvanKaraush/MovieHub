@@ -46,6 +46,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FilmService.Infrastructure"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmService.Infrastructure.Data", "Services\FilmService\FilmService.Infrastructure\FilmService.Infrastructure.Data\FilmService.Infrastructure.Data.csproj", "{2820DC96-228A-4B3C-A8AF-FCE14A367A50}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmService.Infrastructure.Repositories", "Services\FilmService\FilmService.Infrastructure\FilmService.Infrastructure.Repositories\FilmService.Infrastructure.Repositories.csproj", "{03E82E5E-550E-4CEC-B4ED-A260868B8D2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FilmService.Application", "FilmService.Application", "{6CF1065E-2690-4839-873A-96087DDF78A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmService.Application.Services", "Services\FilmService\FilmService.Application\FilmService.Application.Services\FilmService.Application.Services.csproj", "{B0B67B51-D125-42E8-92AE-A9731878D932}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmService.Api", "Services\FilmService\FilmService.Infrastructure\FilmService.Api\FilmService.Api.csproj", "{CE7F9A1B-D2D7-4795-B7E6-E3E312CE11ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +96,18 @@ Global
 		{2820DC96-228A-4B3C-A8AF-FCE14A367A50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2820DC96-228A-4B3C-A8AF-FCE14A367A50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2820DC96-228A-4B3C-A8AF-FCE14A367A50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03E82E5E-550E-4CEC-B4ED-A260868B8D2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E82E5E-550E-4CEC-B4ED-A260868B8D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E82E5E-550E-4CEC-B4ED-A260868B8D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E82E5E-550E-4CEC-B4ED-A260868B8D2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0B67B51-D125-42E8-92AE-A9731878D932}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0B67B51-D125-42E8-92AE-A9731878D932}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0B67B51-D125-42E8-92AE-A9731878D932}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0B67B51-D125-42E8-92AE-A9731878D932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE7F9A1B-D2D7-4795-B7E6-E3E312CE11ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE7F9A1B-D2D7-4795-B7E6-E3E312CE11ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE7F9A1B-D2D7-4795-B7E6-E3E312CE11ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE7F9A1B-D2D7-4795-B7E6-E3E312CE11ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D9642918-523A-49C8-95FC-CD689F16F98A} = {DA4D5AF0-CBA5-446A-B536-92E24CD1E347}
@@ -108,5 +128,9 @@ Global
 		{D32CC425-3A88-40B3-BB53-1469DF29E9DF} = {0DB6F97E-25DA-4D6C-A4EE-4F0807F0301B}
 		{8718BB4E-A2EE-498C-A9F6-E2428B7C05F1} = {3AF41C1B-27DA-48CB-ADB6-07CDE776516A}
 		{2820DC96-228A-4B3C-A8AF-FCE14A367A50} = {8718BB4E-A2EE-498C-A9F6-E2428B7C05F1}
+		{03E82E5E-550E-4CEC-B4ED-A260868B8D2C} = {8718BB4E-A2EE-498C-A9F6-E2428B7C05F1}
+		{6CF1065E-2690-4839-873A-96087DDF78A1} = {3AF41C1B-27DA-48CB-ADB6-07CDE776516A}
+		{B0B67B51-D125-42E8-92AE-A9731878D932} = {6CF1065E-2690-4839-873A-96087DDF78A1}
+		{CE7F9A1B-D2D7-4795-B7E6-E3E312CE11ED} = {8718BB4E-A2EE-498C-A9F6-E2428B7C05F1}
 	EndGlobalSection
 EndGlobal

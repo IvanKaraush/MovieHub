@@ -15,10 +15,4 @@ public static class GuardExtension
             throw new ArgumentException(GuardExtensionMessages.SpecialCharactersException, parameterName);
         }
     }
-
-    public static void IsNullOrDefault(this IGuardClause guardClause, Guid input, string parameterName)
-    {
-        guardClause.Null(input, parameterName);
-        guardClause.Default(input, parameterName);
-    }
 }

@@ -8,20 +8,21 @@ public class Film
     public Guid Id
     {
         get => _id;
-        private set
+        private init
         {
-            Guard.Against.IsNullOrDefault(value, nameof(value));
+            Guard.Against.Default(value, nameof(value));
             _id = value;
         }
     }
-    private Guid _id;
+
+    private readonly Guid _id;
 
     public string Title
     {
         get => _title;
         private set
         {
-            Guard.Against.SpecialCharacters(value, nameof(value));
+            Guard.Against.Default(value, nameof(value));
             _title = value;
         }
     }
@@ -52,10 +53,33 @@ public class Film
 
     private string _url = null!;
 
-    public Film(string title, string description, string url)
+    public Film(Guid id, string title, string description, string url)
+    {
+        Id = id;
+        Title = title;
+        Description = description;
+        Url = url;
+    }
+
+    public void Update(string title, string description, string url)
     {
         Title = title;
         Description = description;
         Url = url;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is Film film)
+        {
+            return film.Id == Id;
+        }
+
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Id, Title, Description);
     }
 }
