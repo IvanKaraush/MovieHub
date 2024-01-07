@@ -6,8 +6,6 @@ namespace GuardExtensions;
 
 public static class GuardExtension
 {
-    private const int Minlength = 8;
-
     public static void SpecialCharacters(this IGuardClause guardClause, string input, string parameterName)
     {
         guardClause.NullOrEmpty(input, nameof(input));
@@ -16,5 +14,11 @@ public static class GuardExtension
         {
             throw new ArgumentException(GuardExtensionMessages.SpecialCharactersException, parameterName);
         }
+    }
+
+    public static void IsNullOrDefault(this IGuardClause guardClause, Guid input, string parameterName)
+    {
+        guardClause.Null(input, parameterName);
+        guardClause.Default(input, parameterName);
     }
 }
