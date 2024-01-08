@@ -1,4 +1,5 @@
 ﻿using Ardalis.GuardClauses;
+using FilmService.Domain.Extensions;
 using GuardExtensions;
 
 namespace FilmService.Domain.Entities;
@@ -46,7 +47,7 @@ public class Film
         get => _url;
         private set
         {
-            Guard.Against.SpecialCharacters(value, nameof(value));
+            Guard.Against.IsCorrectUrl(value, nameof(value));
             _url = value;
         }
     }

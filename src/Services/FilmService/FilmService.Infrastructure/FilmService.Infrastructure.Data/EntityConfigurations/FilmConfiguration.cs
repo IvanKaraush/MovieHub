@@ -15,16 +15,15 @@ public class FilmConfiguration : IEntityTypeConfiguration<Film>
         builder.Property(c => c.Id)
             .HasColumnName("id");
 
-        builder.Property(c => c.Description)
-            .HasColumnName("description")
-            .IsRequired();
+        builder.HasIndex(c => c.Title)
+            .IsUnique();
 
         builder.Property(c => c.Title)
             .HasColumnName("title")
             .IsRequired();
 
-        builder.Property(c => c.Url)
-            .HasColumnName("url")
+        builder.Property(c => c.Description)
+            .HasColumnName("description")
             .IsRequired();
     }
 }

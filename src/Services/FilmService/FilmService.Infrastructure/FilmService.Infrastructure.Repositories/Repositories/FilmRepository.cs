@@ -1,4 +1,5 @@
-﻿using Ardalis.GuardClauses;
+﻿using System.Linq.Expressions;
+using Ardalis.GuardClauses;
 using FilmService.Application.Services.Interfaces;
 using FilmService.Domain.Entities;
 using FilmService.Infrastructure.Data;
@@ -18,6 +19,11 @@ public class FilmRepository : IFilmRepository
     public async Task<Film?> GetByIdAsync(Guid id)
     {
         return await _context.Films.FirstOrDefaultAsync(c => c.Id == id);
+    }
+
+    public async Task<Film[]> GetByFilterAsync(Expression<Func<Film, bool>> filter)
+    {
+        return await _context.Films.Where(filter).ToArrayAsync();
     }
 
     public void Add(Film film)

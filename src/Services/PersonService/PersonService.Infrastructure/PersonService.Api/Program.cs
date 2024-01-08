@@ -31,11 +31,10 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.ConfigureContext(builder.Configuration);
-builder.Services.ConfigureRepositories();
 builder.Services.ConfigureServices();
+builder.Services.ConfigureRepositories();
+builder.Services.ConfigureContext(builder.Configuration);
 builder.Services.AddSingleton<IGlobalExceptionMapper, GlobalExceptionMapper>();
-
 
 var app = builder.Build();
 

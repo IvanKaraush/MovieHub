@@ -25,12 +25,23 @@ public class FilmController : ControllerBase
         return Ok(film);
     }
 
+    // todo: Нормально смапить ошибку если мы падаем по titlePK constraint + сделать пагинацию
+    [HttpGet]
+    public async Task<ActionResult> GetByTitle([FromQuery] string title)
+    {
+        Guard.Against.NullOrEmpty(title, nameof(title));
+
+        var films = await _filmService.GetFilmsByTitleAsync(title);
+
+        return Ok(films);
+    }
+
     [HttpPost("create")]
-    public async Task<ActionResult> Create([FromBody] AddFilmRequest request)
+    public async Task<ActionResult> Create([FromBody] CreateFilmRequest request)
     {
         Guard.Against.Null(request, nameof(request));
 
-        var filmId = await _filmService.AddFilmAsync(request);
+        var filmId = await _filmService.CreateFilmAsync(request);
         return Ok(filmId);
     }
 
@@ -38,16 +49,16 @@ public class FilmController : ControllerBase
     public async Task<ActionResult> Update([FromBody] UpdateFilmRequest request)
     {
         Guard.Against.Null(request, nameof(request));
-        
+
         await _filmService.UpdateFilmAsync(request);
         return NoContent();
     }
-    
+
     [HttpDelete("{id:guid}")]
     public async Task<ActionResult> Delete([FromRoute] Guid id)
     {
         Guard.Against.Default(id, nameof(id));
-        
+
         await _filmService.DeleteFilmAsync(id);
         return NoContent();
     }

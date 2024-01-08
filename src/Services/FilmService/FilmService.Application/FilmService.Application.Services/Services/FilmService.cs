@@ -29,15 +29,28 @@ public class FilmService : IFilmService
         return _mapper.Map<FilmResponse>(film);
     }
 
-    public async Task<Guid> AddFilmAsync(AddFilmRequest request)
+    public async Task<FilmResponse[]> GetFilmsByTitleAsync(string title)
+    {
+        Guard.Against.NullOrEmpty(title, nameof(title));
+
+        var films = await _filmRepository.GetByFilterAsync(c => c.Title.Contains(title));
+        if (films.Length == 0)
+        {
+            throw new FilmNotFoundException(ApplicationExceptionMessages.FilmNotFound);
+        }
+
+        return _mapper.Map<FilmResponse[]>(films);
+    }
+
+    public async Task<Guid> CreateFilmAsync(CreateFilmRequest request)
     {
         Guard.Against.Null(request, nameof(request));
 
-        var film = new Film(Guid.NewGuid(), request.Title, request.Description, request.Url);
-        _filmRepository.Add(film);
+        var newFilm = new Film(Guid.NewGuid(), request.Title, request.Description, request.Url);
+        _filmRepository.Add(newFilm);
 
         await _filmRepository.SaveChangesAsync();
-        return film.Id;
+        return newFilm.Id;
     }
 
     public async Task UpdateFilmAsync(UpdateFilmRequest request)
